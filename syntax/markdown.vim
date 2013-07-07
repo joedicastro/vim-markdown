@@ -67,14 +67,16 @@ syn match  mkdRule      /^\s*-\{3,}$/
 syn match  mkdRule      /^\s*\*\{3,5}$/
 syn match  mkdListItem  "^\s*[-*+]\s\+"
 syn match  mkdListItem  "^\s*\d\+\.\s\+"
-syn match  mkdCode      /^\s*\n\(\(\s\{4,}[^ ]\|\t\+[^\t]\).*\n\)\+/
+" syn match  mkdCode      /^\s*\n\(\(\s\{4,}[^ ]\|\t\+[^\t]\).*\n\)\+/
+" that is no so good but much more faster
+syn region  mkdCode start='^$\n^\s\{4,}' end='^$'
 syn match  mkdLineBreak /  \+$/
 syn region mkdCode      start=/\\\@<!`/                   end=/\\\@<!`/
 syn region mkdCode      start=/\s*``[^`]*/          end=/[^`]*``\s*/
 syn region mkdBlockquote start=/^\s*>/              end=/$/                 contains=mkdLineBreak,mkdLineContinue,@Spell
 syn region mkdCode      start="<pre[^>]*>"         end="</pre>"
 syn region mkdCode      start="<code[^>]*>"        end="</code>"
-syn region mkdCode       start="```" end="```"
+syn region mkdCode      start="```" end="```"
 
 "HTML headings
 syn region htmlH1       start="^\s*#"                   end="\($\|#\+\)" contains=@Spell
